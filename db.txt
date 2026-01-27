@@ -1,0 +1,2914 @@
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[Store_invoice_head]    Script Date: 5/19/2025 1:44:55 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Store_invoice_head](
+	[HID] [int] IDENTITY(1,1) NOT NULL,
+	[CID] [int] NULL,
+	[INVNo] [int] NULL,
+	[NOofitems] [numeric](18, 0) NULL,
+	[TotalAmount] [numeric](18, 0) NULL,
+	[TotalDicount] [numeric](18, 0) NULL,
+	[Grandtotal] [numeric](18, 0) NULL,
+	[DicPre] [numeric](18, 2) NULL,
+	[CreatedBy] [int] NULL,
+	[Date] [date] NULL,
+	[CreatedAt] [smalldatetime] NULL,
+	[TotalQty] [numeric](18, 0) NULL,
+	[Amount] [numeric](18, 0) NULL,
+	[DiscountPercent] [numeric](18, 2) NULL,
+	[DiscountAmount] [numeric](18, 0) NULL,
+ CONSTRAINT [PK_tbl_order_head] PRIMARY KEY CLUSTERED 
+(
+	[HID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[Store_inwardtransaction]    Script Date: 5/19/2025 1:45:14 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Store_inwardtransaction](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[CatID] [int] NULL,
+	[ITEMID] [int] NULL,
+	[Quantity] [numeric](18, 0) NULL,
+	[SalesPrices] [numeric](18, 0) NULL,
+	[PurchasePrice] [numeric](18, 0) NULL,
+	[Date] [date] NULL,
+	[BarCode] [varchar](50) NULL,
+	[EMINO] [varchar](50) NULL,
+	[userID] [int] NULL,
+	[EntryDate] [smalldatetime] NULL,
+	[outstatus] [bit] NULL,
+ CONSTRAINT [PK__Store_in__3213E83FD1D46ABC] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[Store_items]    Script Date: 5/19/2025 1:45:28 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Store_items](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[Description] [nvarchar](1050) NULL,
+	[Status] [bit] NOT NULL,
+	[UOM] [nvarchar](50) NOT NULL,
+	[PPU] [float] NULL,
+	[Code] [nvarchar](1050) NOT NULL,
+	[creationDate] [date] NULL,
+	[updationDate] [date] NULL,
+	[EntryDateTime] [datetime2](7) NULL,
+	[ipAddress] [nvarchar](300) NULL,
+	[UID_id] [int] NOT NULL,
+	[login_name_id] [bigint] NULL,
+	[updatedBy_id] [bigint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[Store_outwardtransaction]    Script Date: 5/19/2025 1:45:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Store_outwardtransaction](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Quantity] [numeric](18, 0) NOT NULL,
+	[Date] [date] NULL,
+	[INID] [int] NULL,
+	[UserID] [int] NULL,
+	[EntryDate] [smalldatetime] NULL,
+	[barcode] [varchar](50) NULL,
+	[EMINO] [varchar](50) NULL,
+	[ITEMID] [int] NULL,
+	[CATID] [int] NULL,
+	[CID] [int] NULL,
+	[lockstatus] [bit] NULL,
+	[INVNO] [int] NULL,
+	[Year] [int] NULL,
+	[Code_id] [int] NULL,
+	[PurchasePrice] [numeric](18, 0) NULL,
+	[SalesPrices] [numeric](18, 0) NULL,
+	[Discount] [numeric](18, 0) NULL,
+	[Amount] [numeric](18, 0) NULL,
+	[HID] [int] NULL,
+ CONSTRAINT [PK__Store_ou__3213E83F2F633BC7] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_Catagory]    Script Date: 5/19/2025 1:45:54 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_Catagory](
+	[CatID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[Status] [bit] NULL,
+ CONSTRAINT [PK_tbl_Catagory] PRIMARY KEY CLUSTERED 
+(
+	[CatID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_clients]    Script Date: 5/19/2025 1:46:05 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_clients](
+	[CID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[City] [varchar](50) NULL,
+	[phoneno] [varchar](50) NULL,
+	[email] [varchar](50) NULL,
+	[status] [bit] NULL,
+	[address] [varchar](50) NULL,
+ CONSTRAINT [PK_tbl_clients] PRIMARY KEY CLUSTERED 
+(
+	[CID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_Color]    Script Date: 5/19/2025 1:46:17 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_Color](
+	[CID] [int] IDENTITY(1,1) NOT NULL,
+	[ColorName] [nchar](10) NULL,
+	[ITEMID] [int] NULL,
+	[ItemName] [varchar](50) NULL,
+	[userID] [int] NULL,
+ CONSTRAINT [PK_tbl_Color] PRIMARY KEY CLUSTERED 
+(
+	[CID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_tbl_Color] UNIQUE NONCLUSTERED 
+(
+	[ITEMID] ASC,
+	[ColorName] ASC,
+	[CID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_company]    Script Date: 5/19/2025 1:46:27 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_company](
+	[CID] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyName] [varchar](50) NULL,
+	[Address] [varchar](50) NULL,
+	[Phoneno] [varchar](50) NULL,
+	[logo] [varchar](50) NULL,
+	[tagline] [varchar](50) NULL,
+	[EntryDateTime] [smalldatetime] NULL,
+	[EntryDate] [date] NULL,
+	[login_name_id] [int] NULL,
+ CONSTRAINT [PK_tbl_company] PRIMARY KEY CLUSTERED 
+(
+	[CID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_items]    Script Date: 5/19/2025 1:46:40 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_items](
+	[ItemID] [int] IDENTITY(1,1) NOT NULL,
+	[CatID] [int] NULL,
+	[Code] [varchar](50) NULL,
+	[Name] [varchar](50) NULL,
+	[SalePrice] [numeric](18, 2) NULL,
+	[purchasePrice] [numeric](18, 2) NULL,
+	[image] [varchar](50) NULL,
+	[status] [bit] NULL,
+	[Color] [varchar](50) NULL,
+	[Spece] [varchar](50) NULL,
+ CONSTRAINT [PK_tbl_items] PRIMARY KEY CLUSTERED 
+(
+	[ItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_orders]    Script Date: 5/19/2025 1:47:04 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_orders](
+	[OID] [int] IDENTITY(1,1) NOT NULL,
+	[CatID] [int] NULL,
+	[ITEMID] [int] NULL,
+	[Quantity] [numeric](18, 0) NULL,
+	[amount] [numeric](18, 0) NULL,
+	[PurchasePrice] [numeric](18, 0) NULL,
+	[userID] [int] NULL,
+	[Date] [date] NULL,
+	[entrydate] [smalldatetime] NULL,
+	[SalesPrices] [numeric](18, 0) NULL,
+	[instatus] [bit] NULL,
+	[HID] [int] NULL,
+ CONSTRAINT [PK_tbl_orders] PRIMARY KEY CLUSTERED 
+(
+	[OID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_Size]    Script Date: 5/19/2025 1:47:15 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_Size](
+	[SID] [int] IDENTITY(1,1) NOT NULL,
+	[SizeName] [varchar](50) NULL,
+	[ITEMID] [int] NULL,
+	[ItemeName] [varchar](50) NULL,
+	[userID] [int] NULL,
+ CONSTRAINT [PK_tbl_Size] PRIMARY KEY CLUSTERED 
+(
+	[SID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_tbl_Size] UNIQUE NONCLUSTERED 
+(
+	[ITEMID] ASC,
+	[SizeName] ASC,
+	[SID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_Stock_Details]    Script Date: 5/19/2025 1:47:27 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_Stock_Details](
+	[ITID] [int] IDENTITY(1,1) NOT NULL,
+	[CAtID] [int] NULL,
+	[ITEMID] [int] NULL,
+	[CID] [int] NULL,
+	[SID] [int] NULL,
+	[Salesprice] [numeric](18, 0) NULL,
+	[PurchasePrice] [numeric](18, 0) NULL,
+	[status] [bit] NULL,
+	[BarCode] [varchar](50) NULL,
+	[userID] [int] NULL,
+	[entryDate] [smalldatetime] NULL,
+	[Discount] [numeric](18, 0) NULL,
+ CONSTRAINT [PK_tbl_Stock_Details] PRIMARY KEY CLUSTERED 
+(
+	[ITID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_Item_Color_Size] UNIQUE NONCLUSTERED 
+(
+	[ITEMID] ASC,
+	[CID] ASC,
+	[SID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  Table [dbo].[tbl_users]    Script Date: 5/19/2025 1:47:38 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[tbl_users](
+	[UserID] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [varchar](50) NULL,
+	[password] [varchar](50) NULL,
+	[status] [bit] NULL,
+	[ClientStatus] [bit] NULL,
+	[catagoryStatus] [bit] NULL,
+	[itemstatus] [bit] NULL,
+	[orderStatus] [bit] NULL,
+	[Dashboardstatus] [bit] NULL,
+	[entryDate] [smalldatetime] NULL,
+	[Sales] [bit] NULL,
+ CONSTRAINT [PK_tbl_users] PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[vie_order_in]    Script Date: 5/19/2025 1:48:02 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[vie_order_in]
+AS
+SELECT ITEMID, SUM(Quantity) AS orderQty
+FROM     tbl_orders
+GROUP BY ITEMID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "tbl_orders"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 275
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vie_order_in'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vie_order_in'
+GO
+
+
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[vie_outward_transaction]    Script Date: 5/19/2025 1:48:15 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[vie_outward_transaction]
+AS
+SELECT Store_outwardtransaction.id, Store_outwardtransaction.Quantity, Store_outwardtransaction.Date, Store_outwardtransaction.INID, Store_outwardtransaction.UserID, Store_outwardtransaction.EntryDate, 
+                  Store_outwardtransaction.barcode, Store_outwardtransaction.EMINO, Store_outwardtransaction.ITEMID, Store_outwardtransaction.CID, view_stock_inventory.ColorName, view_stock_inventory.Name, 
+                  view_stock_inventory.SizeName, Store_outwardtransaction.SalesPrices, Store_outwardtransaction.Discount, tbl_clients.CID AS CLLID, view_stock_inventory.ITID, Store_outwardtransaction.Amount
+FROM     Store_outwardtransaction LEFT OUTER JOIN
+                  view_stock_inventory ON Store_outwardtransaction.ITEMID = view_stock_inventory.ITID LEFT OUTER JOIN
+                  tbl_clients ON Store_outwardtransaction.CID = tbl_clients.CID
+WHERE  (Store_outwardtransaction.lockstatus = 0)
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[22] 4[47] 2[3] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction"
+            Begin Extent = 
+               Top = 50
+               Left = 435
+               Bottom = 422
+               Right = 711
+            End
+            DisplayFlags = 280
+            TopColumn = 6
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 62
+               Left = 905
+               Bottom = 361
+               Right = 1099
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_clients"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 170
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 3
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 19
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 2172
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1356
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vie_outward_transaction'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vie_outward_transaction'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vie_outward_transaction'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_balance]    Script Date: 5/19/2025 1:48:30 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_balance]
+AS
+SELECT view_in.CatName, view_in.Name, view_in.Quantity, ISNULL(View_out.out, 0) AS out, view_in.Quantity - ISNULL(View_out.out, 0) AS Balance, view_in.ITEMID, view_in.CatID, 
+                  view_stock_inventory.ColorName, view_stock_inventory.SizeName
+FROM     view_stock_inventory INNER JOIN
+                  View_out ON view_stock_inventory.ITID = View_out.ITEMID RIGHT OUTER JOIN
+                  view_in ON View_out.ITEMID = view_in.ITEMID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "view_in"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 219
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "View_out"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 252
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 7
+               Left = 532
+               Bottom = 306
+               Right = 726
+            End
+            DisplayFlags = 280
+            TopColumn = 7
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 10
+         Width = 284
+         Width = 1200
+         Width = 4368
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 6648
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1356
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_balance'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_balance'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_in]    Script Date: 5/19/2025 1:48:41 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_in]
+AS
+SELECT SUM(Store_inwardtransaction.Quantity) AS Quantity, Store_inwardtransaction.CatID, view_stock_inventory.Name, view_stock_inventory.CatName, view_stock_inventory.ITID AS ITEMID
+FROM     Store_inwardtransaction INNER JOIN
+                  view_stock_inventory ON Store_inwardtransaction.ITEMID = view_stock_inventory.ITID
+GROUP BY Store_inwardtransaction.CatID, view_stock_inventory.Name, view_stock_inventory.CatName, view_stock_inventory.ITID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[41] 4[20] 2[12] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_inwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 270
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 7
+               Left = 774
+               Bottom = 304
+               Right = 984
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1200
+         Width = 3216
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_in'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_in'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_in_Sum]    Script Date: 5/19/2025 1:48:53 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_in_Sum]
+AS
+SELECT ITEMID, SUM(Quantity) AS inSUm
+FROM     Store_inwardtransaction
+GROUP BY ITEMID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_inwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 281
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_in_Sum'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_in_Sum'
+GO
+
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_inv_Details]    Script Date: 5/19/2025 1:49:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_inv_Details]
+AS
+SELECT tbl_clients.Name, Store_outwardtransaction.Date, tbl_clients.phoneno, tbl_clients.email, Store_outwardtransaction.INVNO, Store_invoice_head.TotalQty AS Noifitems, 
+                  Store_invoice_head.TotalQty AS Quantity, Store_invoice_head.Amount, Store_invoice_head.Grandtotal
+FROM     Store_outwardtransaction INNER JOIN
+                  tbl_clients ON Store_outwardtransaction.CID = tbl_clients.CID INNER JOIN
+                  Store_invoice_head ON Store_outwardtransaction.HID = Store_invoice_head.HID
+WHERE  (Store_outwardtransaction.lockstatus = 1)
+GROUP BY tbl_clients.Name, Store_outwardtransaction.Date, tbl_clients.phoneno, tbl_clients.email, Store_outwardtransaction.INVNO, Store_invoice_head.Amount, Store_invoice_head.Grandtotal, 
+                  Store_invoice_head.TotalQty
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 283
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 4
+         End
+         Begin Table = "tbl_clients"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 281
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Store_invoice_head"
+            Begin Extent = 
+               Top = 7
+               Left = 532
+               Bottom = 306
+               Right = 754
+            End
+            DisplayFlags = 280
+            TopColumn = 5
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 11
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_inv_Details'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_inv_Details'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_invoice]    Script Date: 5/19/2025 1:49:32 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_invoice]
+AS
+SELECT TOP (200) SUM(Store_outwardtransaction.Quantity) AS Quantity, Store_outwardtransaction.Date, Store_outwardtransaction.INVNO, Store_outwardtransaction.EMINO, tbl_clients.Name AS cname, 
+                  tbl_clients.phoneno, tbl_clients.email, Store_outwardtransaction.Year, tbl_clients.address, tbl_clients.City, view_stock_inventory.Name, view_stock_inventory.ColorName, 
+                  view_stock_inventory.SizeName, view_stock_inventory.CatName, SUM(Store_outwardtransaction.SalesPrices) AS SalesPrices, Store_outwardtransaction.Discount, SUM(Store_invoice_head.TotalQty) AS TotalQty, 
+                  SUM(Store_invoice_head.Amount) AS Amount, Store_invoice_head.DiscountPercent, Store_invoice_head.DiscountAmount, Store_invoice_head.Grandtotal
+FROM     Store_outwardtransaction INNER JOIN
+                  view_stock_inventory ON Store_outwardtransaction.ITEMID = view_stock_inventory.ITID INNER JOIN
+                  Store_invoice_head ON Store_outwardtransaction.HID = Store_invoice_head.HID LEFT OUTER JOIN
+                  tbl_clients ON Store_outwardtransaction.CID = tbl_clients.CID
+WHERE  (Store_outwardtransaction.lockstatus = 1)
+GROUP BY Store_outwardtransaction.Date, Store_outwardtransaction.INVNO, Store_outwardtransaction.EMINO, tbl_clients.Name, tbl_clients.phoneno, tbl_clients.email, Store_outwardtransaction.Year, 
+                  tbl_clients.address, tbl_clients.City, view_stock_inventory.Name, view_stock_inventory.ColorName, view_stock_inventory.SizeName, view_stock_inventory.CatName, Store_outwardtransaction.Discount, 
+                  Store_invoice_head.DiscountPercent, Store_invoice_head.DiscountAmount, Store_invoice_head.Grandtotal
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[24] 4[27] 2[3] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 327
+               Right = 208
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 0
+               Left = 1126
+               Bottom = 458
+               Right = 1320
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Store_invoice_head"
+            Begin Extent = 
+               Top = 7
+               Left = 256
+               Bottom = 335
+               Right = 462
+            End
+            DisplayFlags = 280
+            TopColumn = 4
+         End
+         Begin Table = "tbl_clients"
+            Begin Extent = 
+               Top = 6
+               Left = 662
+               Bottom = 279
+               Right = 832
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 22
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1452
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+     ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N' Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_invoice_Manual]    Script Date: 5/19/2025 1:49:44 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [dbo].[view_invoice_Manual]
+AS
+SELECT        Store_outwardtransaction_manual.id, Store_outwardtransaction_manual.Quantity, Store_outwardtransaction_manual.Date, Store_outwardtransaction_manual.UserID, 
+                         Store_outwardtransaction_manual.EntryDate, Store_outwardtransaction_manual.barcode, Store_outwardtransaction_manual.EMINO, Store_outwardtransaction_manual.CID, 
+                         Store_outwardtransaction_manual.lockstatus, Store_outwardtransaction_manual.INVNO, Store_outwardtransaction_manual.PPU, Store_outwardtransaction_manual.Name, tbl_clients.Name AS cname, 
+                         tbl_clients.City, tbl_clients.phoneno, tbl_clients.email
+FROM            Store_outwardtransaction_manual INNER JOIN
+                         tbl_clients ON Store_outwardtransaction_manual.CID = tbl_clients.CID
+WHERE        (Store_outwardtransaction_manual.lockstatus = 1)
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[32] 4[29] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction_manual"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 208
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_clients"
+            Begin Extent = 
+               Top = 6
+               Left = 246
+               Bottom = 136
+               Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 17
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice_Manual'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice_Manual'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_invoice_Manual_INV]    Script Date: 5/19/2025 1:49:55 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [dbo].[view_invoice_Manual_INV]
+AS
+SELECT        SUM(Store_outwardtransaction_manual.Quantity) AS Quantity, Store_outwardtransaction_manual.Date, Store_outwardtransaction_manual.INVNO, SUM(Store_outwardtransaction_manual.PPU) AS PPU, 
+                         tbl_clients.Name AS cname, tbl_clients.City, tbl_clients.phoneno, tbl_clients.email, COUNT(Store_outwardtransaction_manual.Name) AS Noifitems, Store_outwardtransaction_manual.EMINO
+FROM            Store_outwardtransaction_manual INNER JOIN
+                         tbl_clients ON Store_outwardtransaction_manual.CID = tbl_clients.CID
+WHERE        (Store_outwardtransaction_manual.lockstatus = 1)
+GROUP BY Store_outwardtransaction_manual.Date, Store_outwardtransaction_manual.INVNO, tbl_clients.Name, tbl_clients.City, tbl_clients.phoneno, tbl_clients.email, 
+                         Store_outwardtransaction_manual.EMINO
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[23] 4[38] 2[14] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction_manual"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 262
+               Right = 208
+            End
+            DisplayFlags = 280
+            TopColumn = 1
+         End
+         Begin Table = "tbl_clients"
+            Begin Extent = 
+               Top = 6
+               Left = 246
+               Bottom = 136
+               Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 17
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice_Manual_INV'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_invoice_Manual_INV'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_inward_items]    Script Date: 5/19/2025 1:50:06 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_inward_items]
+AS
+SELECT Store_inwardtransaction.id, Store_inwardtransaction.CatID, Store_inwardtransaction.ITEMID, Store_inwardtransaction.Quantity, Store_inwardtransaction.SalesPrices, Store_inwardtransaction.PurchasePrice, 
+                  Store_inwardtransaction.Date, Store_inwardtransaction.BarCode, Store_inwardtransaction.EMINO, Store_inwardtransaction.userID, Store_inwardtransaction.EntryDate, 
+                  ISNULL(Store_inwardtransaction.outstatus, 0) AS outstatus, view_stock_inventory.Salesprice, view_stock_inventory.PurchasePrice AS Expr1, view_stock_inventory.BarCode AS Expr2, view_stock_inventory.Name, 
+                  view_stock_inventory.ColorName, view_stock_inventory.SizeName, view_stock_inventory.CatName
+FROM     Store_inwardtransaction INNER JOIN
+                  view_stock_inventory ON Store_inwardtransaction.ITEMID = view_stock_inventory.ITID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[13] 4[48] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_inwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 170
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 7
+               Left = 774
+               Bottom = 301
+               Right = 968
+            End
+            DisplayFlags = 280
+            TopColumn = 6
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 10
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_inward_items'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_inward_items'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_Order_Balance]    Script Date: 5/19/2025 1:50:19 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_Order_Balance]
+AS
+SELECT vie_order_in.ITEMID, vie_order_in.orderQty, ISNULL(view_in_Sum.inSUm, 0) AS inSUm, vie_order_in.orderQty - ISNULL(view_in_Sum.inSUm, 0) AS Balance
+FROM     vie_order_in LEFT OUTER JOIN
+                  view_in_Sum ON vie_order_in.ITEMID = view_in_Sum.ITEMID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "vie_order_in"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 126
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_in_Sum"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 126
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 4620
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_Order_Balance'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_Order_Balance'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_order_inward]    Script Date: 5/19/2025 1:50:32 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_order_inward]
+AS
+SELECT tbl_orders.OID, tbl_orders.CatID, tbl_orders.ITEMID, tbl_orders.Quantity, tbl_orders.amount, tbl_orders.PurchasePrice, tbl_orders.userID, tbl_orders.Date, tbl_orders.entrydate, 
+                  tbl_orders.SalesPrices, view_stock_inventory.Salesprice, view_stock_inventory.PurchasePrice AS Expr1, view_stock_inventory.BarCode, view_stock_inventory.Name, view_stock_inventory.ColorName, 
+                  view_stock_inventory.SizeName, view_stock_inventory.CatName
+FROM     tbl_orders INNER JOIN
+                  view_stock_inventory ON tbl_orders.ITEMID = view_stock_inventory.ITID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "tbl_orders"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 170
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_stock_inventory"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 303
+               Right = 292
+            End
+            DisplayFlags = 280
+            TopColumn = 5
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 11
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_order_inward'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_order_inward'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[View_out]    Script Date: 5/19/2025 1:50:43 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[View_out]
+AS
+SELECT TOP (200) SUM(Quantity) AS out, ITEMID, CATID
+FROM     Store_outwardtransaction
+GROUP BY ITEMID, CATID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 273
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 11
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_out'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_out'
+GO
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_outward_pre_balance]    Script Date: 5/19/2025 1:51:00 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE VIEW [dbo].[view_outward_pre_balance]
+AS
+SELECT Code_id, SUM(Quantity) AS Quantity
+FROM     Store_outwardtransaction
+GROUP BY Code_id
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Store_outwardtransaction"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 306
+               Right = 258
+            End
+            DisplayFlags = 280
+            TopColumn = 4
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 12
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_outward_pre_balance'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_outward_pre_balance'
+GO
+
+
+
+
+
+USE [Muntaha]
+GO
+
+/****** Object:  View [dbo].[view_stock_inventory]    Script Date: 5/19/2025 1:51:10 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[view_stock_inventory]
+AS
+SELECT TOP (200) tbl_Stock_Details.ITID, tbl_Stock_Details.CAtID, tbl_Stock_Details.ITEMID, tbl_Stock_Details.CID, tbl_Stock_Details.SID, tbl_Stock_Details.Salesprice, tbl_Stock_Details.PurchasePrice, 
+                  tbl_Stock_Details.status, tbl_Stock_Details.BarCode, tbl_Stock_Details.userID, tbl_Stock_Details.entryDate, tbl_items.Name, tbl_Color.ColorName, tbl_Size.SizeName, tbl_Catagory.Name AS CatName, 
+                  ISNULL(view_Order_Balance.Balance, 0) AS Balance, ISNULL(tbl_Stock_Details.Discount, 0) AS Discount
+FROM     tbl_Stock_Details INNER JOIN
+                  tbl_Catagory ON tbl_Stock_Details.CAtID = tbl_Catagory.CatID INNER JOIN
+                  tbl_items ON tbl_Stock_Details.ITEMID = tbl_items.ItemID INNER JOIN
+                  tbl_Color ON tbl_Stock_Details.CID = tbl_Color.CID INNER JOIN
+                  tbl_Size ON tbl_Stock_Details.SID = tbl_Size.SID LEFT OUTER JOIN
+                  view_Order_Balance ON tbl_Stock_Details.ITID = view_Order_Balance.ITEMID
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[12] 4[47] 2[10] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "tbl_Stock_Details"
+            Begin Extent = 
+               Top = 7
+               Left = 48
+               Bottom = 547
+               Right = 242
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_Catagory"
+            Begin Extent = 
+               Top = 7
+               Left = 290
+               Bottom = 148
+               Right = 484
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_items"
+            Begin Extent = 
+               Top = 7
+               Left = 532
+               Bottom = 170
+               Right = 726
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_Color"
+            Begin Extent = 
+               Top = 7
+               Left = 774
+               Bottom = 170
+               Right = 968
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tbl_Size"
+            Begin Extent = 
+               Top = 7
+               Left = 1016
+               Bottom = 170
+               Right = 1210
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "view_Order_Balance"
+            Begin Extent = 
+               Top = 7
+               Left = 1258
+               Bottom = 170
+               Right = 1452
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 18
+         Width = 284
+         Width = 1200
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_stock_inventory'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+         Width = 1200
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1176
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1356
+         SortOrder = 1416
+         GroupBy = 1350
+         Filter = 1356
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_stock_inventory'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'view_stock_inventory'
+GO
+
+
+
