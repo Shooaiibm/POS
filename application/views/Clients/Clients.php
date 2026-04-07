@@ -41,9 +41,9 @@ $this->load->view('layouts/head'); ?>
             
         <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1" class="form-label" style="text-align: left;">VAT NO:</label>
+                                                            <label for="exampleInputEmail1" class="form-label" style="text-align: left;">Owner Name:</label>
                                                             <input type="text" class="form-control" id="City"
-                                                                placeholder="Enter VAT No" autocomplete="City">
+                                                                placeholder="Enter Owner Name" autocomplete="City">
                                                         </div>
   </div>
   <div class="col-md-12">
@@ -148,7 +148,7 @@ function loadData()
 {let url = "<?php echo base_url("Clients/ClientsController/loadClients")?>";
 $.post(url,function(data){let  html = `<table class="table table-responsive w-100 d-block table-hover" id="tableDataGet" style="width:100%;">
         <thead >
-            <tr>    <th>Company Name</th>    <th>VAt No</th>    <th>Address</th> <th>Phone No</th>    <th>Email</th>    <th>Status</th>  <th>Actions</th> </tr>
+            <tr>    <th>Company Name</th>    <th>Owner Name</th>    <th>Address</th> <th>Phone No</th>    <th>Email</th>    <th>Status</th>  <th>Actions</th> </tr>
         </thead>
         <tbody>`;
         data.forEach(element => {

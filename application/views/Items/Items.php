@@ -1094,170 +1094,188 @@ $.post(url3, function (data) {
         ]
     });
 });
-$('#generateAllBarcodesBtn').on('click', function () {
-    let url = "<?php echo base_url("Items/ItemsController/loadprd") ?>";
+function printSingleRowBarcode(row, barcodeValue, type) {
+    const qty = parseInt(row.Qty) || 1;
+    let html = '';
+    const barcodeType = type === 'company' ? row.PerformaInvoiceNo : row.PerformaInvoiceNo;
+    const barcodeColor = type === 'company' ? '#2a5c8a' : '#6b4e71';
+    
+    // Get ItemName with null check
+    const itemName = row.ItemName || '';
+    
+    for (let i = 0; i < qty; i++) {
+        let currentBarcode = type === 'company' 
+            ? `${barcodeValue}-${i + 1}` 
+            : barcodeValue;
 
-    $.post(url, function (data) {
-        const qty = prompt("Enter quantity to print per product:");
-        if (!qty || isNaN(qty) || qty <= 0) {
-            alert("Please enter a valid quantity.");
-            return;
-        }
+        // Create canvas for barcode generation
+        const canvas = document.createElement("canvas");
+        canvas.width = 300;
+        canvas.height = 80; // Reduced height
+        
+        JsBarcode(canvas, currentBarcode, {
+            format: "CODE128",
+            lineColor: barcodeColor,
+            width: 2,
+            height: 30, // Reduced height
+            fontSize: 10, // Smaller font
+            margin: 0,
+            displayValue: false // Hide text value on barcode to save space
+        });
+        
+        const barcodeImage = canvas.toDataURL("image/png");
 
-        // Inject print styles once
-        if (!document.getElementById("barcodePrintStyle")) {
-            const style = document.createElement("style");
-            style.id = "barcodePrintStyle";
-            style.innerHTML = `
-                @media print {
-                    @page {
-                        size: auto;
-                        margin: 0 !important;
-                    }
+        html += `
+            <div class="print-page">
+                <div class="barcode-box">
+                    <div class="barcode-single-line small-text">${barcodeType}</div>
+                    <img src="${barcodeImage}" alt="barcode" class="barcode-image">
+                    <div class="barcode-single-line small-text">${itemName}</div>
+                    <div class="barcode-single-line small-text">(${row.ItemColor || ''}) (${row.ItemSize || ''})</div>
+                </div>
+            </div>
+        `;
+    }
 
-                    html, body {
-                        margin: 0 !important;
-                        padding: 0 !important;
-                        display: flex !important;
-                        flex-direction: column !important;
-                        align-items: center !important;
-                        justify-content: flex-start !important;
-                    }
-
-                    * {
-                        box-sizing: border-box !important;
-                    }
-
-                    button, .no-print {
-                        display: none !important;
-                    }
-
-                    .print-page {
-                        display: flex !important;
-                        flex-direction: row !important;
-                        justify-content: center !important;
-                        align-items: center !important;
-                        gap: 1cm !important;
-                        page-break-inside: avoid !important;
-                        flex-wrap: wrap !important;
-                    }
-
-                    .barcode-box {
-                        width: 6.98cm !important;
-                        height: 1.68cm !important;
-                        display: flex !important;
-                        flex-direction: column !important;
-                        align-items: center !important;
-                        justify-content: center !important;
-                        padding: 2px !important;
-                        background-color: white !important;
-                        color: #000 !important;
-                        margin-top: 5px !important;
-                    }
-
-                    .barcode-box img {
-                        width: 100% !important;
-                        height: 0.98cm !important;
-                        object-fit: contain !important;
-                        margin-top: 2px !important;
-                    }
-
-                    .barcode-single-line {
-                        font-size: 10px !important;
-                        font-weight: bold !important;
-                        text-align: center !important;
-                        margin-top: 2px !important;
-                        line-height: 1 !important;
-                        color: #000 !important;
-                    }
+    // Inject print styles if not already present
+    if (!document.getElementById("barcodePrintStyle")) {
+        const style = document.createElement("style");
+        style.id = "barcodePrintStyle";
+        style.innerHTML = `
+            @media print {
+                @page {
+                    size: auto;
+                    margin: 0 !important;
                 }
 
-                /* Screen styles */
-                body {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: flex-start;
+                html, body {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                }
+
+                * {
+                    box-sizing: border-box !important;
+                }
+
+                button, .no-print {
+                    display: none !important;
                 }
 
                 .print-page {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 1cm;
-                    flex-wrap: wrap;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    gap: 0.5cm !important;
+                    page-break-inside: avoid !important;
+                    flex-wrap: wrap !important;
                 }
 
                 .barcode-box {
-                    width: 6.98cm;
-                    height: 1.68cm;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 1px;
-                    background-color: white;
-                    color: #000;
-                    margin-top: 5px;
+                    width: 6.98cm !important;
+                    min-height:5.2cm !important; /* Increased from fixed height to min-height */
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                    padding: 3px !important;
+                    background-color: white !important;
+                    color: #000 !important;
+                    margin: 2px !important;
+                    border: 1px solid #ccc !important;
                 }
 
                 .barcode-box img {
-                    width: 100%;
-                    height: 0.98cm;
-                    object-fit: contain;
-                    margin-top: 2px;
+                    width: 100% !important;
+                    height: 0.8cm !important; /* Reduced height */
+                    object-fit: contain !important;
+                    margin: 2px 0 !important;
                 }
 
                 .barcode-single-line {
-                    font-size: 8px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin-top: 2px;
-                    line-height: 1;
-                    color: #000;
+                    font-size: 7px !important; /* Smaller font */
+                    font-weight: bold !important;
+                    text-align: center !important;
+                    line-height: 1.2 !important;
+                    color: #000 !important;
+                    width: 100% !important;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
+                    white-space: nowrap !important;
+                    padding: 1px 2px !important;
                 }
-            `;
-            document.head.appendChild(style);
-        }
 
-        let content = '';
-
-        data.forEach(element => {
-            for (let i = 0; i < qty; i++) {
-                const barcodeId = `barcode-${element.BarCode}-${i + 1}`;
-                const canvas = document.createElement("canvas");
-                canvas.width = 300;
-                canvas.height = 100;
-
-                JsBarcode(canvas, element.BarCode, {
-                    format: "CODE128",
-                    lineColor: "#000",
-                    width: 3,
-                    height: 60,
-                    fontSize: 12,
-                    margin: 0,
-                    displayValue: true
-                });
-
-                const barcodeImage = canvas.toDataURL("image/png");
-                const originalPrice = parseFloat(element.Salesprice);
-
-                content += `
-                <div class="print-page">
-                    <div class="barcode-box">
-                        <div class="barcode-single-line">${element.Name}</div>
-                        <img src="${barcodeImage}" id="${barcodeId}" alt="barcode">
-                        <div class="barcode-single-line">Price: ${originalPrice.toFixed(0)}</div>
-                    </div>
-                </div>`;
+                .small-text {
+                    font-size: 6px !important;
+                }
             }
-        });
 
-        $('#barcodeBody').html(content);
-        $('#barcodeModal').modal('show');
-    });
-});
+            /* Screen styles */
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .print-page {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5cm;
+                flex-wrap: wrap;
+            }
+
+            .barcode-box {
+                width: 6.98cm;
+                min-height: 2.2cm;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 3px;
+                background-color: white;
+                color: #000;
+                margin: 2px;
+                border: 1px solid #ddd;
+                border-radius: 2px;
+            }
+
+            .barcode-box img {
+                width: 100%;
+                height: 0.8cm;
+                object-fit: contain;
+                margin: 2px 0;
+            }
+
+            .barcode-single-line {
+                font-size: 7px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 1.2;
+                color: #000;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 1px 2px;
+            }
+
+            .small-text {
+                font-size: 6px;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    $('#barcodePrintArea').html(html);
+    $('#barcodePrintModal').modal('show');
+}
 
 
 let url33 = "<?php echo base_url("Items/ItemsController/tbl_stock_price_log") ?>";

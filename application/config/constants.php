@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-define('Base_logo', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/logo.jpg');
-define('Base_logo_Transparent', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/logo.jpg');
-define('Base_logo_Cover', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/logo.jpg');
+define('Base_logo', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/style.PNG');
+define('Base_logo_Transparent', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/style.PNG');
+define('Base_logo_Cover', 'http://' . $_SERVER['HTTP_HOST'] . '/POS/'.'assets/img/style.PNG');
 
-define('Base_CompanyName', 'Electic Shop');
-define('Base_CompanyAddress', '2nd Floor oposit  Sialkot');
-define('Base_CompanyPhone', '+92 0000');
-define('Base_CompanyEmail', '');
+define('Base_CompanyName', 'Turquia Doner Kebab S.L.');
+define('Base_CompanyAddress', 'C/ Font I Monteros 27 - Entlo. B, 07003 Palma de Mallorca, Balearic Islands, Spain');
+define('Base_CompanyPhone', '619557312');
+define('Base_CompanyEmail', 'info@turquiadoner.com');
 define('Base_CompanyURL', '');
 define('Base_tag', 'Thank you for Comming :)');
 define('BASE_SYMBOL', 'PKR');
